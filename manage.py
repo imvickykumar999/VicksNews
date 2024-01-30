@@ -3,12 +3,9 @@
 import os
 import sys
 
-# # from HostTor import VicksTor
-# import VicksTor as vix
-# vix.run_server('flask')
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'imvickykumar999.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'weather.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -34,7 +31,6 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser --username imvickykumar999 --email imvickykumar999@gmail.com
 
-python setup.py install
 python manage.py runserver
 
 http://127.0.0.1:8000
