@@ -32,7 +32,7 @@ setup(
     name="django-helloworld",
     version="0.1",
     description="A Django 'Hello World' program example",
-    long_description=read('README.rst'),
+    long_description=read('README.md'),
     classifiers=CLASSIFIERS,
     keywords="example helloworld django program",
     author="Alex Clark",
