@@ -1,7 +1,23 @@
-# weather-django
+# `weather django`
 
-we will learn how to create a Weather app that uses Django as backend. Django provides a Python Web framework based web framework that allows rapid development and clean, pragmatic design.
+```bash
+python -m venv env
+env\Scripts\activate
 
-learn how to make at <a href="https://www.geeksforgeeks.org/weather-app-using-django-python/" target="_blank"> GeeksforGeeks </a>
+env\Scripts\python.exe -m pip install --upgrade pip
+pip install -r requirements.txt
 
-![screen](screen.png)
+pip install django -U
+python manage.py migrate
+
+python manage.py createsuperuser --username imvickykumar999 --email imvickykumar999@gmail.com
+python manage.py runserver
+
+http://127.0.0.1:8000
+http://127.0.0.1:8000/admin
+
+# Ctrl + C to exit 
+deactivate
+```
+
+![image](https://github.com/imvickykumar999/VicksNews/assets/50515418/52305b45-d24c-43f7-9c6b-75fa7154ab5c)
