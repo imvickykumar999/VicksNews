@@ -1,49 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 
-<head>
-  <meta charset="utf-8">
-  <title>weather</title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <head>
+    <meta charset="utf-8">
 
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      <style>
+        .rounded {
+            border-radius:1.0rem!important
+        }
 
-</head>
+        .button {
+          background-color: #008CBA;
+          border: none;
+          color: white;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
 
-<body>
-  <nav class="row" style="background: green; color: white;">
-    <h1 class="col-md-3 text-center">weather</h1>
-  </nav>
-  <br />
-  <br />
-  <center class="row">
-    <form method="post" class="col-md-6 col-md-offset-3">
-      {% csrf_token %}
-      <div class="input-group">
-        <input type="text" class="form-control" name="city" placeholder="Search City">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        .card-img-top {
+          object-fit: cover;
+          object-position: center;
+        }
+
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 25px;
+          padding: 30px;
+          line-height: 1.6;
+        }
+
+        h1 {
+          margin-bottom: 30px;
+          border-bottom: 1px #ccc solid;
+        }
+
+        h3 {
+          margin-top: 20px;
+        }
+
+        input[type="text"] {
+          border: 1px #ccc solid;
+          padding: 4px;
+          height: 35px;
+          margin-top: 20px;
+        }
+
+        .card {
+          margin: 20px 0;
+          border: #ccc 1px solid;
+          padding: 20px
+        }
+    </style>
+
+    <title>Vicks News</title>
+  </head>
+
+  <body>
+    <center>
+      <h1 class='jumbotron'>{{good}}</h1>
+
+      <div class="jumbotron jumbotron-fluid rounded">
+        <div class="container">
+          {% for x in data %}
+
+              <div class="col mb-4">
+                <div class="card">
+                  <a target="_blank" href={{x.urlToImage}}>
+                    <img src={{x.urlToImage}} width="80%" class="card-img-top">
+                  </a>
+
+                  <div class="card">
+                    <h2 style="color:black;" class="card-title">
+                      <strong>
+                        {{x.title}}
+                      </strong>
+                    </h2>
+                    <br>
+                      <h3>
+                        <p class="card-text">{{x.description}}</p>
+                      </h3>
+                    <br>
+
+                    <a target="_blank" href="{{x.url}}" class="btn btn-secondary">
+                      READ MORE
+                    </a>
+
+                  </div>
+                </div>
+              </div>
+
+          <br><br><br>
+          {% endfor %}
+
         </div>
-        <form>
-  </center>
-  <div class="row">
-    {% if country_code and coordinate and temp and pressure and humidity %}
-    <div class="col-md-6 col-md-offset-3">
-      <h3>country code : {{country_code}}</h1>
-        <h5>coordinate : {{coordinate}}</h5>
-        <h5>temp : {{temp}}</h5>
-        <h5>pressure : {{pressure}} </h5>
-        <h5>humidity : {{humidity}}</h5>
-    </div>
-    {% endif %}
-  </div>
-</body>
+      </div>
 
+      Made with ❤️ by
+      <a target="_blank" href="https://github.com/imvickykumar999/imvickykumar999">
+        @imvickykumar999
+      </a>
+
+    </center>
+  </body>
 </html>

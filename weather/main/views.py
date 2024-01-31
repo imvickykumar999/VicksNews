@@ -1,34 +1,41 @@
+
 from django.shortcuts import render
-# import json to load json data to python dictionary
-import json
-# urllib.request to make a request to api
-import urllib.request
+import requests, random, datetime
 
 
-def index(request):
-    if request.method == 'POST':
-        city = request.POST['city']
-        ''' api key might be expired use your own api_key
-            place api_key in place of appid="your api_key here "  '''
+def get_news(source, api_key='e1b57251b1b94ed894f3c60d25551eb2'):
+    try:
+        gets = f'https://newsapi.org/v1/articles?source={source}&sortBy=top&apiKey={api_key}'
+        req = requests.get(gets)
+        box = req.json()['articles']
 
-        # source contain json data from api
+    except:
+        gets = f'https://newsapi.org/v1/articles?source={source}&sortBy=top&apiKey=5f69434d32434ea8bdb16b347f71cca2'
+        req = requests.get(gets)
+        box = req.json()['articles']
+    
+    print(box)
+    return box
 
-        source = urllib.request.urlopen(
-            'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=48a90ac42caa09f90dcaeee4096b9e53').read()
 
-        # converting json data to dictionary
+def good_day():
+    currentTime = datetime.datetime.now() + datetime.timedelta(hours=6)
 
-        list_of_data = json.loads(source)
-
-        # data for variable list_of_data
-        data = {
-            "country_code": str(list_of_data['sys']['country']),
-            "coordinate": str(list_of_data['coord']['lon']) + ' ' + str(list_of_data['coord']['lat']),
-            "temp": str(list_of_data['main']['temp']) + 'k',
-            "pressure": str(list_of_data['main']['pressure']),
-            "humidity": str(list_of_data['main']['humidity']),
-        }
-        print(data)
+    if currentTime.hour < 12:
+        return 'Good morning'
+    elif 12 <= currentTime.hour < 18:
+        return 'Good afternoon'
     else:
-        data={}
-    return render(request, "main/index.html",data)
+        return 'Good evening'
+    
+def index(request):
+    source = ['bbc-news', 'cnn', 'the-verge', 'time', 'the-wall-street-journal']
+    source = random.choice(source)
+
+    data = get_news(source)
+    return render(request, "main/index.html", 
+        {
+            'data' : data, 
+            'good' : good_day()
+        }
+    )
