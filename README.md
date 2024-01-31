@@ -1,4 +1,8 @@
-# `weather django`
+# `Vicks NewsAPI`
+
+`Made in Django` : https://vicksnews.pythonanywhere.com/
+
+<br>
 
 ```bash
 python -m venv env
@@ -20,4 +24,6 @@ http://127.0.0.1:8000/admin
 deactivate
 ```
 
-![image](https://github.com/imvickykumar999/VicksNews/assets/50515418/52305b45-d24c-43f7-9c6b-75fa7154ab5c)
+<br>
+
+![image](https://github.com/imvickykumar999/VicksNews/assets/50515418/6d912ded-32c8-4c31-8dd0-8a88beb06edb)
