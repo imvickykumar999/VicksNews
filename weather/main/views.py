@@ -1,7 +1,6 @@
 
 from django.shortcuts import render
-import requests, random, datetime
-
+import requests, random
 
 def get_news(source, api_key='e1b57251b1b94ed894f3c60d25551eb2'):
     try:
@@ -16,26 +15,10 @@ def get_news(source, api_key='e1b57251b1b94ed894f3c60d25551eb2'):
     
     print(box)
     return box
-
-
-def good_day():
-    currentTime = datetime.datetime.now() + datetime.timedelta(hours=6)
-
-    if currentTime.hour < 12:
-        return 'Good morning'
-    elif 12 <= currentTime.hour < 18:
-        return 'Good afternoon'
-    else:
-        return 'Good evening'
     
 def index(request):
     source = ['bbc-news', 'cnn', 'the-verge', 'time', 'the-wall-street-journal']
     source = random.choice(source)
 
     data = get_news(source)
-    return render(request, "main/index.html", 
-        {
-            'data' : data, 
-            'good' : good_day()
-        }
-    )
+    return render(request, "main/index.html", {'data' : data})
